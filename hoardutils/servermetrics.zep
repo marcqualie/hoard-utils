@@ -8,20 +8,22 @@ class ServerMetrics
         return PHP_OS;
     }
 
+    protected function runCommand(command)
+    {
+        return trim((string) exec(command));
+    }
+
     public function getLoad()
     {
-        string output;
-        string command;
+        var output;
         var matches = [];
         switch this->getOsName() {
             case "Linux":
-                let command = "cat /proc/loadavg";
-                let output = (string) exec(command);
+                let output = this->runCommand("cat /proc/loadavg");
                 preg_match_all("/[0-9]+[.]{1}[0-9]+/", output, matches);
                 return array_map("floatval", matches[0]);
             case "Darwin":
-                let command = "sysctl -n vm.loadavg";
-                let output = (string) exec(command);
+                let output = this->runCommand("sysctl -n vm.loadavg");
                 preg_match_all("/[0-9]+[.]{1}[0-9]+/", output, matches);
                 return array_map("floatval", matches[0]);
         }
@@ -33,17 +35,14 @@ class ServerMetrics
      */
     public function getCpuCount()
     {
-        int output;
-        string command;
+        var output;
         switch this->getOsName() {
             case "Linux":
-                let command = "cat /proc/cpuinfo | grep processor | wc -l";
-                let output = (int) exec(command);
-                return output;
+                let output = this->runCommand("cat /proc/cpuinfo | grep processor | wc -l");
+                return (int) output;
             case "Darwin":
-                let command = "sysctl -n hw.ncpu";
-                let output = (int) exec(command);
-                return output;
+                let output = this->runCommand("sysctl -n hw.ncpu");
+                return (int) output;
         }
     }
 
