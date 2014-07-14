@@ -1,11 +1,14 @@
 # Hoard Utils
 
-PHP Extension used by Hoard applications to access low-level system data fast
+This PHP extension can be used in conjunction with Hoard applications to collect low level system information.
+
+
+## Dependencies
+
+[Zephir](http://zephir-lang.com) is required to build this extension. You can find the installation instructions [here](http://zephir-lang.com/install.html).
 
 
 ## Installation
-
-[Zephir](http://zephir-lang.com) is required to build this extension. Please [install](http://zephir-lang.com/install.html) that first.
 
 ```
 git clone git@github.com:marcqualie/hoard-utils.git
@@ -18,21 +21,39 @@ make && sudo make install
 
 Get an instance of the ServerMetrics class
 
-``` shell
+``` php
 $metrics = new HoardUtils\ServerMetrics;
 ```
 
-Access various metrics from the under-lying system
+You can use the following commands to access various server metrics.
+
+Get the host name
 
 ``` php
 $metrics->getHostName();
 // demo1.hoardhq.com
+```
+
+Get some load metrics
+```php
 $metrics->getLoad();
 // [1.0, 1.5, 2.0]
+```
+
+Get CPU count
+```php
 $metrics->getCpuCount();
 // 4
+```
+
+Get memory information
+```php
 $metrics->getMemoryInfo();
 // ['total' => 8192, 'used' => 4096, 'free' => 4096]
+```
+
+Get system process information
+```php
 $metrics->getProcessInfo();
 // ['total' => 512, 'running' => 32, 'stuck' => 1, 'sleeping' => 8, 'threads' => 1024]
 ```
