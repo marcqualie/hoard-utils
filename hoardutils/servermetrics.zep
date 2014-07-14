@@ -13,6 +13,11 @@ class ServerMetrics
         return trim((string) exec(command));
     }
 
+    public function getHostName()
+    {
+        return gethostname();
+    }
+
     public function getLoad()
     {
         var output;
