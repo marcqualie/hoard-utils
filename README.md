@@ -10,7 +10,7 @@ PHP Extension used by Hoard applications to access low-level system data fast
 ```
 git clone git@github.com:marcqualie/hoard-utils.git
 cd hoard-utils
-make && make install
+make && sudo make install
 ```
 
 
