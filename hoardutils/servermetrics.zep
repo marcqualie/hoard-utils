@@ -10,12 +10,18 @@ class ServerMetrics
 
     protected function runCommand(command)
     {
-        return trim((string) shell_exec(command));
+        putenv("PATH=/usr/local/bin:/bin:/usr/bin:/usr/sbin:.");
+        return trim((string) shell_exec("/bin/bash -c \"" . command . "\""));
     }
 
     protected function getTopSnapshot()
     {
         return this->runCommand("top -l 1 | head -n 10");
+    }
+
+    public function getPath()
+    {
+        return this->runCommand("echo \\$PATH");
     }
 
     public function getHostName()
