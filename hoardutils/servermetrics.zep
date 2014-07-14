@@ -10,7 +10,7 @@ class ServerMetrics
 
     protected function runCommand(command)
     {
-        return trim((string) exec(command));
+        return trim((string) shell_exec(command));
     }
 
     protected function getTopSnapshot()
