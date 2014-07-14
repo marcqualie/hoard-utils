@@ -1,4 +1,10 @@
-default: extension
+default: compile
 
-extension:
-	zephir build
+compile:
+	zephir compile
+
+install:
+	zephir install
+
+clean:
+	zephir fullclean
