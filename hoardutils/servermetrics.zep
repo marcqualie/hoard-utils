@@ -27,4 +27,24 @@ class ServerMetrics
         }
     }
 
+    /**
+     * Count the number of CPUs available to the system
+     * @return {int}
+     */
+    public function getCpuCount()
+    {
+        int output;
+        string command;
+        switch this->getOsName() {
+            case "Linux":
+                let command = "cat /proc/cpuinfo | grep processor | wc -l";
+                let output = (int) exec(command);
+                return output;
+            case "Darwin":
+                let command = "sysctl -n hw.ncpu";
+                let output = (int) exec(command);
+                return output;
+        }
+    }
+
 }
