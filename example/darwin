@@ -1,0 +1,5 @@
+#!/usr/bin/env php
+<?php
+
+$metrics = new HoardUtils\ServerMetrics\Darwin;
+echo 'Load: ' . implode(' ', $metrics->getLoad()) . "\n";
