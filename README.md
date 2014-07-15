@@ -11,7 +11,7 @@ This PHP extension can be used in conjunction with Hoard applications to collect
 ## Installation
 
 ```
-git clone git@github.com:marcqualie/hoard-utils.git
+git clone https://github.com/marcqualie/hoard-utils.git
 cd hoard-utils
 make && sudo make install
 ```
